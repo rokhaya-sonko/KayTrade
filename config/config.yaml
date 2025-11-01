@@ -1,0 +1,82 @@
+# KayTrade Configuration File
+
+# Data Configuration
+data:
+  sources:
+    - yfinance
+    - alpha_vantage
+  default_source: yfinance
+  cache_dir: ./data_cache
+  update_interval: 1d  # daily
+
+# Trading Configuration
+trading:
+  initial_capital: 100000.0
+  commission: 0.001  # 0.1%
+  slippage: 0.0005  # 0.05%
+  max_position_size: 0.2  # 20% of portfolio
+  min_position_size: 0.01  # 1% of portfolio
+  rebalance_frequency: weekly
+
+# Backtesting Configuration
+backtesting:
+  start_date: "2020-01-01"
+  end_date: "2023-12-31"
+  benchmark: "SPY"
+  use_vwap: true
+  use_twap: false
+
+# Signal Generation Configuration
+signals:
+  rule_based:
+    enabled: true
+    strategies:
+      - moving_average_crossover
+      - rsi_divergence
+      - bollinger_bands
+  ml_based:
+    enabled: true
+    models:
+      - random_forest
+      - xgboost
+      - lstm
+    features:
+      - returns
+      - volume
+      - volatility
+      - technical_indicators
+
+# Portfolio Management Configuration
+portfolio:
+  optimization_method: mean_variance  # mean_variance, risk_parity, equal_weight
+  risk_free_rate: 0.02
+  max_leverage: 1.0
+  constraints:
+    min_weight: 0.0
+    max_weight: 0.3
+    long_only: true
+
+# Performance Analytics Configuration
+analytics:
+  metrics:
+    - sharpe_ratio
+    - sortino_ratio
+    - max_drawdown
+    - calmar_ratio
+    - annual_return
+    - annual_volatility
+    - turnover
+  risk_free_rate: 0.02
+  benchmark: SPY
+
+# Paper Trading Configuration
+paper_trading:
+  enabled: false
+  broker: alpaca  # alpaca, interactive_brokers, etc.
+  update_frequency: 1m
+
+# Logging Configuration
+logging:
+  level: INFO
+  file: ./logs/kaytrade.log
+  console: true
