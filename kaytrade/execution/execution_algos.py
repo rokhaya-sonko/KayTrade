@@ -4,7 +4,7 @@ Execution algorithms (VWAP, TWAP)
 
 import pandas as pd
 import numpy as np
-from typing import List, Optional
+from typing import List, Optional, Dict
 from datetime import datetime, timedelta
 
 
