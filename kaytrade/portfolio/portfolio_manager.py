@@ -83,8 +83,9 @@ class PortfolioManager:
             
         elif method == 'kelly':
             # Kelly criterion (simplified)
-            win_rate = 0.55  # Assumed win rate
-            win_loss_ratio = 1.5  # Assumed win/loss ratio
+            # Note: In production, these should be estimated from historical performance
+            win_rate = 0.55  # Conservative estimate
+            win_loss_ratio = 1.5  # Conservative estimate
             kelly_fraction = (win_rate * win_loss_ratio - (1 - win_rate)) / win_loss_ratio
             kelly_fraction = max(0, min(kelly_fraction, self.max_position_size))
             

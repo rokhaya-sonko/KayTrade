@@ -157,12 +157,9 @@ class MLStrategy(BaseStrategy):
         self.is_trained = True
         self.feature_columns = feature_columns
         
-        # Evaluate
-        train_score = self.model.score(X_train_scaled, y_train)
-        test_score = self.model.score(X_test_scaled, y_test)
-        
-        print(f"Training score: {train_score:.4f}")
-        print(f"Test score: {test_score:.4f}")
+        # Evaluate (results can be logged externally if needed)
+        self.train_score = self.model.score(X_train_scaled, y_train)
+        self.test_score = self.model.score(X_test_scaled, y_test)
     
     def generate_signals(self, data: pd.DataFrame) -> pd.Series:
         """Generate signals using ML model"""

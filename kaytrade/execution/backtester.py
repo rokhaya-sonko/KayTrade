@@ -182,6 +182,16 @@ class Backtester:
                 
                 if not symbol_data.empty:
                     prices[symbol] = symbol_data['Close'].iloc[0]
+                elif symbol in prices:
+                    # Keep last known price if no data for this day
+                    pass
+                else:
+                    # Skip if no price data available
+                    continue
+            
+            if not prices:
+                # No price data available, skip this period
+                continue
             
             portfolio_value = self.portfolio_manager.get_portfolio_value(prices)
             

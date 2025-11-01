@@ -142,11 +142,8 @@ class PerformanceAnalyzer:
         total_return = (1 + returns).prod() - 1
         n_periods = len(returns)
         
-        if n_periods < periods_per_year:
-            # Annualize if less than a year
-            annual_return = (1 + total_return) ** (periods_per_year / n_periods) - 1
-        else:
-            annual_return = total_return * (periods_per_year / n_periods)
+        # Use compound annualization for all cases
+        annual_return = (1 + total_return) ** (periods_per_year / n_periods) - 1
         
         return annual_return
     
